@@ -1,0 +1,20 @@
+body {
+    text-align: center;
+}
+
+.control {
+	width: 690px;
+	text-align: center;
+	padding-left: 225px;
+	margin-bottom: 10px;
+}
+
+.control h2 {
+	display: inline-block;
+	padding-right: 10px;
+}
+
+.control h3 {
+	display: inline-block;
+	padding-left: 10px;
+}
