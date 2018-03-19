@@ -1,6 +1,6 @@
 // Sets an initial player score of 0.
 var score = 0;
-document.getElementById('playerScore').innerHTML = score;
+document.getElementById('gameScore').innerHTML = score;
 
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
@@ -33,7 +33,7 @@ Enemy.prototype.update = function(dt) {
 		player.y < this.y + 25 &&
 		30 + player.y > this.y) {
 		score = 0;
-		document.getElementById('playerScore').innerHTML = score;
+		document.getElementById('gameScore').innerHTML = score;
 		player.reset();
     }
 };
@@ -65,7 +65,7 @@ Player.prototype.update = function() {
 	// If the player reaches the water
 	if (player.y < 20) {
 	score++;
-	document.getElementById('playerScore').innerHTML = score;
+	document.getElementById('gameScore').innerHTML = score;
 	this.reset();
 }
 };
