@@ -5,16 +5,15 @@ body {
 .control {
 	width: 690px;
 	text-align: center;
-	padding-left: 225px;
-	margin-bottom: 10px;
+	padding-left: 200px;
 }
 
-.control h2 {
+.score {
 	display: inline-block;
-	padding-right: 10px;
+	margin-right: 50px;
 }
 
-.control h3 {
+.timer {
 	display: inline-block;
-	padding-left: 10px;
+	padding-left: 50px
 }
