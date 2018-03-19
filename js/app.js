@@ -1,4 +1,4 @@
-// Sets an initial player score of 0.
+// Starts score at 0.
 var score = 0;
 document.getElementById('gameScore').innerHTML = score;
 
@@ -21,12 +21,11 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     this.x += this.speed * dt;
-	
+	// Calls multiSpeed()
 	if (this.x > 550) {
 		this.x = -100;
 		this.multiSpeed();
 	}
-
 	// If the enemy and the player collide.
     if (player.x < this.x + 60 &&
 		player.x + 37 > this.x &&
@@ -38,6 +37,7 @@ Enemy.prototype.update = function(dt) {
     }
 };
 
+// Variable enemy speed function
 var speedFactor = 50;
 
 Enemy.prototype.multiSpeed = function() {
@@ -59,7 +59,7 @@ var Player = function () {
     this.y = 450;
 };
 
-// Is called every time the player position is updated
+// Called every time the player position is updated
 Player.prototype.update = function() {
  	
 	// If the player reaches the water
@@ -74,6 +74,13 @@ Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+// Called when the player is reset to the starting point
+Player.prototype.reset = function() {
+    this.x = 200;
+    this.y = 450;
+};
+
+// Applies boundries to the player canvas
 Player.prototype.handleInput = function(direction) {
     if(direction == 'left' && this.x > 0) {
         this.x -= 50;
@@ -89,26 +96,22 @@ Player.prototype.handleInput = function(direction) {
     }
 };
 
-// Is called when the player is reset to the starting point
-Player.prototype.reset = function() {
-    this.x = 200;
-    this.y = 450;
-};
-
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 var allEnemies = [];
+
+// Row that each enemy is created in
 var enemyRow = [60, 140, 220, 300];
 var enemy;
 
+// Creates new enemy in each row
 enemyRow.forEach(function(rowY) {
 	enemy = new Enemy(0, rowY, 100 + Math.floor(Math.random() * 512));
 	allEnemies.push(enemy);
 });
+
 // Place the player object in a variable called player
 var player = new Player();
-
-
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
