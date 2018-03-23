@@ -2,13 +2,36 @@
 	box-sizing: border-box;
 }
 
+@font-face {
+	font-family: 'Karmatic Arcade';
+	src: url('fonts/Karmatic Arcade.ttf');
+}
+
+@font-face {
+	font-family: 'PressStart2';
+	src: url('fonts/PressStart2.ttf');
+}
+
+@font-face {
+	font-family: 'VIDEOPHREAK';
+	src: url('fonts/VIDEOPHREAK.ttf');
+}
+
 body {
     text-align: center;
+	background: #b5bfce;
 }
 
 h1 {
-	
+	font-family: 'Karmatic Arcade';
+	font-size: 3em;
 }
+
+h2 {
+	font-family: 'PressStart2';
+	font-size: 1.5em;
+}
+
 .control {
 	width: 100%;
 	text-align: center;
@@ -17,10 +40,10 @@ h1 {
 
 .score {
 	display: inline-block;
-	margin-right: 50px;
+	margin-right: 75px;
 }
 
-.timer {
-	display: inline-block;
-	padding-left: 50px
+footer {
+	font-family: 'VIDEOPHREAK';
+	font-size: 1.5em;
 }
