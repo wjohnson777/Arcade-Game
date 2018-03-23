@@ -1,6 +1,10 @@
 // Starts score at 0.
-var score = 0;
-document.getElementById('gameScore').innerHTML = score;
+/* var score = 0; */
+/* document.getElementById('gameScore').innerHTML = score; */
+
+/* function resetScore() {
+	document.getElementById("gameScore").reset();
+}; */
 
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
@@ -27,6 +31,7 @@ Enemy.prototype.update = function(dt) {
 		this.multiSpeed();
 	}
 	// If the enemy and the player collide.
+	// Points removed if hit by enemy.
     if (player.x < this.x + 60 &&
 		player.x + 37 > this.x &&
 		player.y < this.y + 25 &&
@@ -49,14 +54,19 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+var score = 0;
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
+// Credit https://discussions.udacity.com/t/need-help-refactoring/32466/2
 
 var Player = function () {
     this.sprite = 'images/char-boy.png';
-    this.x = 200;
-    this.y = 450;
+	this.startingX = 200;
+	this.startingY = 450;
+    this.x = this.startingX;
+    this.y = this.startingY;
+	this.score = 0;
 };
 
 // Called every time the player position is updated
@@ -65,6 +75,10 @@ Player.prototype.update = function() {
 	// If the player reaches the water
 	if (player.y < 20) {
 	score++;
+	if(score == 5) {
+		alert("You Win!");
+		document.location.reload();
+	}
 	document.getElementById('gameScore').innerHTML = score;
 	this.reset();
 }
@@ -76,8 +90,8 @@ Player.prototype.render = function() {
 
 // Called when the player is reset to the starting point
 Player.prototype.reset = function() {
-    this.x = 200;
-    this.y = 450;
+    this.x = this.startingX;
+    this.y = this.startingY;
 };
 
 // Applies boundries to the player canvas
@@ -113,6 +127,7 @@ enemyRow.forEach(function(rowY) {
 // Place the player object in a variable called player
 var player = new Player();
 
+  
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', function(e) {
@@ -123,5 +138,8 @@ document.addEventListener('keyup', function(e) {
         40: 'down'
     };
 
-    player.handleInput(allowedKeys[e.keyCode]);
+    player.handleInput(allowedKeys[e.keyCode]); {
+		gameTimer();
+	}
+	
 });
