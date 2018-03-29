@@ -119,6 +119,7 @@ Player.prototype.handleInput = function(arrowkey) {
 var allEnemies = [];
 
 // The row that each enemy is created in on the grid
+// Added a fourth enemy row for increased difficulty
 var enemyRow = [60, 140, 220, 300];
 var enemy;
 
