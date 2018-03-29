@@ -16,7 +16,7 @@ var Enemy = function(x, y, speed) {
 // Parameter: dt, a time delta between ticks
 // Credit https://discussions.udacity.com/t/need-help-refactoring/32466/2
 // I found the methods used in the udacity discussions link gave the code
-// a cleaner easier to read look and were more understandable.
+// a cleaner easier to read look and more understandable.
 Enemy.prototype.update = function(dt) {
   // You should multiply any movement by the dt parameter
   // which will ensure the game runs at the same speed for
@@ -59,8 +59,9 @@ var score = 0;
 // This class requires an update(), render() and
 // a handleInput() method.
 
-// used this code structure to make the Player function easier to read
 // Credit https://discussions.udacity.com/t/need-help-refactoring/32466/2
+// Used the method in the udacity discussions to make the Player function
+// easier to read like the enemy.prototype.update above.
 var Player = function() {
   this.sprite = 'images/char-boy.png';
   this.startingX = 200;
@@ -78,7 +79,7 @@ Player.prototype.update = function() {
 // After click "Ok" the game restarts
   if (player.y < 20) {
     score++;
-    if (score == 10) {
+    if (score == 5) {
       alert("You Win!");
       document.location.reload();
     }
@@ -97,18 +98,18 @@ Player.prototype.reset = function() {
   this.y = this.startingY;
 };
 
-// Applies boundries to the player canvas/grid.
-Player.prototype.handleInput = function(direction) {
-  if (direction == 'left' && this.x > 0) {
+// Applies boundries to the player canvas/grid
+Player.prototype.handleInput = function(arrowkey) {
+  if (arrowkey == 'left' && this.x > 0) {
     this.x -= 50;
   }
-  if (direction == 'right' && this.x < 400) {
+  if (arrowkey == 'right' && this.x < 400) {
     this.x += 50;
   }
-  if (direction == 'up' && this.y > 3) {
+  if (arrowkey == 'up' && this.y > 4) {
     this.y -= 50;
   }
-  if (direction == 'down' && this.y < 400) {
+  if (arrowkey == 'down' && this.y < 400) {
     this.y += 50;
   }
 };
