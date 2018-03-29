@@ -1,3 +1,5 @@
+// Variable assigned to increase enemy speed
+var speedFactor = 50;
 // Enemies our player must avoid
 var Enemy = function(x, y, speed) {
   // Variables applied to each of our instances go here,
@@ -12,29 +14,36 @@ var Enemy = function(x, y, speed) {
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
+// Credit https://discussions.udacity.com/t/need-help-refactoring/32466/2
+// I found the methods used in the udacity discussions link gave the code
+// a cleaner easier to read look and were more understandable.
 Enemy.prototype.update = function(dt) {
   // You should multiply any movement by the dt parameter
   // which will ensure the game runs at the same speed for
   // all computers.
+  this.halfBoxHeight = 50;
+  this.halfBoxWidth = 37;
   this.x += this.speed * dt;
   if (this.x > 550) {
     this.x = -100;
     this.multiSpeed();
   }
+  var enemyKeyUp = this.y - this.halfBoxHeight;
+  var enemyKeyDown = this.y + this.halfBoxHeight;
+  var enemyKeyLeft = this.x - this.halfBoxWidth;
+  var enemyKeyRight = this.x + this.halfBoxWidth;
   // If the enemy and the player collide.
-  // Points removed if hit by enemy.
-  if (player.x < this.x + 60 &&
-    player.x + 37 > this.x &&
-    player.y < this.y + 25 &&
-    30 + player.y > this.y) {
+  // Score resets to "0" if hit by an enemy.
+    if (player.y > enemyKeyUp &&
+		player.y < enemyKeyDown &&
+		player.x > enemyKeyLeft &&
+		player.x < enemyKeyRight) {
     score = 0;
     document.getElementById('gameScore').innerHTML = score;
     player.reset();
   }
 };
 
-// Variable assigned to increase enemy speed
-var speedFactor = 50;
 // Function randomly assigns different speed to each enemy
 Enemy.prototype.multiSpeed = function() {
   this.speed = speedFactor * Math.floor(Math.random() * 10 + 1);
@@ -64,9 +73,9 @@ var Player = function() {
 // Called every time the player position is updated
 Player.prototype.update = function() {
 
-  // If the player reaches the water, the score increments by 1
-	// If the score reaches 10 an alert box activates with "You Win"
-	// After click "Ok" the game restarts
+// If the player reaches the water, the score increments by 1
+// If the score reaches "10" an alert box activates with "You Win"
+// After click "Ok" the game restarts
   if (player.y < 20) {
     score++;
     if (score == 10) {
@@ -88,7 +97,7 @@ Player.prototype.reset = function() {
   this.y = this.startingY;
 };
 
-// Applies boundries to the player canvas
+// Applies boundries to the player canvas/grid.
 Player.prototype.handleInput = function(direction) {
   if (direction == 'left' && this.x > 0) {
     this.x -= 50;
