@@ -11,3 +11,7 @@ Avoid the enemy bugs to get to the water and score.
 If your hit by an enemy bug the score resets back to '0' and your player is set back to the beginning.
 
 Once you score '5' points you win the game!
+
+### Notes
+
+More features will be added in at a later date.
