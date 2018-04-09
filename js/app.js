@@ -1,3 +1,5 @@
+// Using strict mode for code security
+'use strict';
 // Variable assigned to increase enemy speed
 var speedFactor = 50;
 // Enemies our player must avoid
@@ -28,6 +30,12 @@ Enemy.prototype.update = function(dt) {
     this.x = -100;
     this.multiSpeed();
   }
+  this.checkCollision();
+};
+
+// Added checkCollision method
+Enemy.prototype.checkCollision = function() {
+	
   var enemyKeyUp = this.y - this.halfBoxHeight;
   var enemyKeyDown = this.y + this.halfBoxHeight;
   var enemyKeyLeft = this.x - this.halfBoxWidth;
@@ -54,7 +62,6 @@ Enemy.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-var score = 0;
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
@@ -71,13 +78,15 @@ var Player = function() {
   this.score = 0;
 };
 
+var score = 0;
+
 // Called every time the player position is updated
 Player.prototype.update = function() {
 
 // If the player reaches the water, the score increments by 1
 // If the score reaches "10" an alert box activates with "You Win"
 // After click "Ok" the game restarts
-  if (player.y < 20) {
+  if (this.y < 20) {
     score++;
     if (score == 5) {
       alert("You Win!");
