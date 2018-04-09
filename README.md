@@ -12,7 +12,7 @@ If your hit by an enemy bug the score resets back to '0' and your player is set 
 
 Once you score '5' points you win the game!
 
-To load the game and "Play" click here: https://rawgit.com/wjohnson777/arcade-game/master/index.html
+**To load the game and "Play" click here:** https://rawgit.com/wjohnson777/arcade-game/master/index.html
 
 ### Notes
 
